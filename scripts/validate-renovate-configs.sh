@@ -9,7 +9,7 @@ trap 'rm -rf "$tmpdir"' EXIT
 
 cd "$src"
 
-repo_config=renovate.json
+repo_config=renovate-config.json
 sources=(default.json ci.json github-actions.json gradle.json)
 focused=(ci.json github-actions.json gradle.json)
 
