@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Group Gradle dependencies and the Gradle wrapper using final releases only.",
+  "extends": ["github>virtlink/renovate-config"],
   "enabledManagers": ["gradle", "gradle-wrapper"],
   "includePaths": [
     "gradle/libs.versions.toml",

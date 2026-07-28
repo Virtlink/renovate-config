@@ -12,7 +12,7 @@ Reusable Renovate presets for Virtlink repositories.
 
 
 ## Usage
-Add this repository to the `extends` array in your `renovate.json`.
+Add one preset to the `extends` array in your `renovate.json`.
 
 Use the shared defaults only:
 
@@ -24,23 +24,31 @@ Use the shared defaults only:
 }
 ```
 
-Use the shared defaults plus CI grouping:
+Use CI grouping plus the shared defaults:
 
 ```json
 {
   "extends": [
-    "github>virtlink/renovate-config",
     "github>virtlink/renovate-config:ci"
   ]
 }
 ```
 
-Use the shared defaults plus Gradle grouping:
+Use GitHub Actions grouping plus the shared defaults:
 
 ```json
 {
   "extends": [
-    "github>virtlink/renovate-config",
+    "github>virtlink/renovate-config:github-actions"
+  ]
+}
+```
+
+Use Gradle grouping plus the shared defaults:
+
+```json
+{
+  "extends": [
     "github>virtlink/renovate-config:gradle"
   ]
 }
@@ -51,23 +59,27 @@ Use multiple focused presets together when a repository needs them:
 ```json
 {
   "extends": [
-    "github>virtlink/renovate-config",
     "github>virtlink/renovate-config:ci",
     "github>virtlink/renovate-config:gradle"
   ]
 }
 ```
 
-Include `github>virtlink/renovate-config` whenever you want the shared defaults.
-Focused presets do not repeat `default.json` by themselves.
+Each focused preset extends `github>virtlink/renovate-config`, so users do not need to list the default preset separately.
 
 
 ## Development
-Enter the Nix development shell, then validate the presets:
+Enter the Nix development shell, then run the same Renovate validator used by CI:
 
 ```sh
 nix develop
+bash scripts/validate-renovate-configs.sh
+```
+
+Or run the full flake check:
+
+```sh
 nix flake check
 ```
 
-The validation checks that each JSON file is valid Renovate configuration and that focused presets still compose with `default.json`.
+The validation runs `renovate-config-validator --strict --no-global` against the base and focused presets, then validates focused presets flattened with `default.json`.

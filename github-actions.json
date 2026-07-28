@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Group GitHub Actions updates in repository and Copier-template workflows.",
+  "extends": ["github>virtlink/renovate-config"],
   "enabledManagers": ["github-actions"],
   "github-actions": {
     "managerFilePatterns": [
