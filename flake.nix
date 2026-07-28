@@ -18,17 +18,25 @@
         cd "$src"
 
         sources=(default.json ci.json github-actions.json gradle.json)
+        focused=(ci.json github-actions.json gradle.json)
         jq empty "''${sources[@]}"
 
         work="$TMPDIR/source"
-        mkdir -p "$work"
+        sanitized="$TMPDIR/sanitized"
+        mkdir -p "$work" "$sanitized"
         cp "''${sources[@]}" "$work/"
         cd "$work"
 
-        renovate-config-validator --strict --no-global "''${sources[@]}"
+        jq -e '.extends == null' default.json > /dev/null
+        for config in "''${focused[@]}"; do
+          jq -e '.extends == ["github>virtlink/renovate-config"]' "$config" > /dev/null
+          jq 'del(.extends)' "$config" > "$sanitized/$config"
+        done
+
+        renovate-config-validator --strict --no-global default.json "$sanitized"/*.json
 
         merge_config() {
-          jq -s '.[0] as $base | .[1] as $leaf | ($base * $leaf) | .packageRules = (($base.packageRules // []) + ($leaf.packageRules // []))' default.json "$1" > "$TMPDIR/$2.json"
+          jq -s '.[0] as $base | .[1] as $leaf | ($base * ($leaf | del(.extends))) | .packageRules = (($base.packageRules // []) + ($leaf.packageRules // []))' default.json "$1" > "$TMPDIR/$2.json"
         }
 
         merge_config ci.json ci

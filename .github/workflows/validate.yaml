@@ -23,5 +23,8 @@ jobs:
       - name: "Install Nix"
         uses: DeterminateSystems/determinate-nix-action@v3.17.2
 
+      - name: "Run renovate-config-validator"
+        run: nix develop --command bash scripts/validate-renovate-configs.sh
+
       - name: "Check flake"
         run: nix flake check --print-build-logs
