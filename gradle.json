@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Group Gradle dependencies and the Gradle wrapper using final releases only.",
+  "enabledManagers": ["gradle", "gradle-wrapper"],
+  "includePaths": [
+    "gradle/libs.versions.toml",
+    "settings.gradle.kts",
+    "gradle/wrapper/gradle-wrapper.properties"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["gradle", "gradle-wrapper"],
+      "groupName": "Gradle dependencies",
+      "groupSlug": "gradle-dependencies",
+      "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i"
+    }
+  ]
+}

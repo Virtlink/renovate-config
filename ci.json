@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Group GitHub Actions and GitLab CI dependency updates.",
+  "enabledManagers": ["github-actions", "gitlabci"],
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions", "gitlabci"],
+      "groupName": "CI configuration",
+      "groupSlug": "ci-configuration"
+    }
+  ]
+}

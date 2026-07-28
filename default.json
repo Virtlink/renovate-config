@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate policy: chore branches, a three-day release cooldown, stable releases, and CI automerge.",
+  "branchPrefix": "chore/",
+  "dependencyDashboard": false,
+  "minimumReleaseAge": "3 days",
+  "minimumReleaseAgeBehaviour": "timestamp-required",
+  "internalChecksFilter": "strict",
+  "ignoreUnstable": true,
+  "separateMajorMinor": false,
+  "packageRules": [
+    {
+      "description": "Automerge GitHub Actions and GitLab CI updates using squash merges.",
+      "matchManagers": ["github-actions", "gitlabci"],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    }
+  ]
+}
