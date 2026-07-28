@@ -68,6 +68,19 @@ Use multiple focused presets together when a repository needs them:
 Each focused preset extends `github>virtlink/renovate-config`, so users do not need to list the default preset separately.
 
 
+## Repository automation
+This repository runs self-hosted Renovate from `.github/workflows/renovate.yaml` using `renovate-config.json` as the global configuration file.
+
+The workflow runs every Saturday at `03:17` UTC and can also be started manually with `workflow_dispatch`.
+
+Configure these repository secrets for the workflow:
+
+- `APP_ID`: GitHub App ID.
+- `APP_PRIVATE_KEY`: GitHub App private key PEM contents.
+
+The GitHub App needs repository permissions for contents read/write, pull requests read/write, workflows read/write, and metadata read-only.
+
+
 ## Development
 Enter the Nix development shell, then run the same Renovate validator used by CI:
 
@@ -82,4 +95,4 @@ Or run the full flake check:
 nix flake check
 ```
 
-The validation runs `renovate-config-validator --strict --no-global` against the base and focused presets, then validates focused presets flattened with `default.json`.
+The validation runs `renovate-config-validator --strict` against the self-hosted `renovate-config.json`, validates the base and focused presets with `--no-global`, then validates focused presets flattened with `default.json`.

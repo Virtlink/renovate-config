@@ -14,8 +14,13 @@ sources=(default.json ci.json github-actions.json gradle.json)
 focused=(ci.json github-actions.json gradle.json)
 
 jq empty "$repo_config" "${sources[@]}"
-jq -e '.extends == ["github>virtlink/renovate-config"]' "$repo_config" > /dev/null
-renovate-config-validator --strict --no-global "$repo_config"
+jq -e '
+  .extends == ["github>virtlink/renovate-config"]
+  and .platform == "github"
+  and .onboarding == false
+  and .requireConfig == "optional"
+' "$repo_config" > /dev/null
+renovate-config-validator --strict "$repo_config"
 
 work="$tmpdir/source"
 sanitized="$tmpdir/sanitized"
