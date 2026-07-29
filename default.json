@@ -1,20 +1,41 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Shared Renovate policy: chore branches, a three-day release cooldown, stable releases, and CI automerge.",
-  "branchPrefix": "chore/",
+  "description": "Shared Renovate policy.",
+  // Self-hosted in a Docker container
   "dependencyDashboard": false,
+  "onboarding": false,
+  "requireConfig": "ignored",
+  // Consider a release stable after 3 days (same as Dependabot)
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-required",
   "internalChecksFilter": "strict",
   "ignoreUnstable": true,
-  "separateMajorMinor": false,
+  // Git settings
+  "branchPrefix": "chore/",
   "packageRules": [
     {
-      "description": "Automerge GitHub Actions and GitLab CI updates using squash merges.",
-      "matchManagers": ["github-actions", "gitlabci"],
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "groupSlug": "github-actions",
+      "separateMajorMinor": false,
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
+    },
+    {
+      "matchManagers": ["gitlabci"],
+      "groupName": "GitLab CI",
+      "groupSlug": "gitlab-ci",
+      "separateMajorMinor": false,
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "matchManagers": ["gradle", "gradle-wrapper"],
+      "groupName": "Gradle dependencies",
+      "groupSlug": "gradle-dependencies",
+      "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i"
     }
   ]
 }

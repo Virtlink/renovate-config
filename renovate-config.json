@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "platform": "github",
-  "onboarding": false,
-  "requireConfig": "optional",
-  "extends": ["github>virtlink/renovate-config"]
+  "extends": ["github>virtlink/renovate-config"],
+  "enabledManagers": ["github-actions", "gitlabci"]
 }
