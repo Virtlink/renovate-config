@@ -36,7 +36,8 @@
       "matchManagers": ["gradle", "gradle-wrapper"],
       "groupName": "Gradle dependencies",
       "groupSlug": "gradle-dependencies",
-      "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i"
+      "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i",
+      "allowedUnsafeExecutions": ["gradleWrapper"],
     }
   ]
 }
