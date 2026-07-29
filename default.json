@@ -4,6 +4,7 @@
   // Self-hosted in a Docker container
   "dependencyDashboard": false,
   "requireConfig": "ignored",
+  "onboarding": false,
   // Consider a release stable after 3 days (same as Dependabot)
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-required",
