@@ -2,18 +2,81 @@
 title: "Home"
 ---
 # Renovate config
-Shared configuration for self-hosted Renovate on projects.
+Shared configuration and GitHub Actions workflow for running self-hosted Renovate on Virtlink projects.
 
-To view this documentation live, invoke:
+
+## Renovate shared configuration
+To use the shared Renovate configuration, add a `renovate-config.json` file to the repository that should receive dependency updates:
+
+```json title="renovate-config.json"
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "platform": "github",
+  "extends": ["github>virtlink/renovate-config"],
+  "enabledManagers": ["github-actions", "gitlabci"]
+}
+```
+
+Set `enabledManagers` in the consuming repository to the Renovate managers that repository should use.
+The example above enables dependency updates for GitHub Actions workflows and GitLab CI files.
+
+
+## Renovate GitHub shared workflow
+Use the reusable workflow from this repository to run Renovate from GitHub Actions:
+
+```yaml title=".github/workflows/renovate.yaml"
+---
+name: 'Renovate'
+
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    # Run at 03:17 on Saturday
+    - cron: '17 3 * * 6'
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    name: 'Update dependencies'
+    uses: virtlink/renovate-config/.github/workflows/renovate.yaml@main
+    with:
+      log-level: info
+    secrets:
+      client-id: ${{ secrets.APP_ID }}
+      client-private-key: ${{ secrets.APP_PRIVATE_KEY }}
+```
+
+The reusable workflow checks out the consuming repository and runs Renovate with `renovate-config.json` by default.
+Override the config path only when the consuming repository stores its Renovate config somewhere else:
+
+```yaml
+with:
+  renovate-config-file: path/to/renovate-config.json
+```
+
+Configure these repository secrets in the consuming repository:
+
+- `APP_ID`: GitHub App ID.
+- `APP_PRIVATE_KEY`: GitHub App private key PEM contents.
+
+The GitHub App needs these repository permissions:
+
+- Commit statuses: read and write.
+- Contents: read and write.
+- Metadata: read-only.
+- Pull requests: read and write.
+- Workflows: read and write.
+
+GitHub Actions must also be allowed to create and approve pull requests.
+
+
+## Developing this documentation
+To view this documentation locally:
 
 ```shell
 cd docs/
-```
-```shell
 uv run zensical serve
 ```
 
-This will publish the documentation at [localhost:8000](http://localhost:8000/) by default, and watch for any changes to the documentation source files.
+This publishes the documentation at [localhost:8000](http://localhost:8000/) by default and watches for documentation source changes.
 
-[Zensical Documentation](https://zensical.org/){ .md-button }
 
