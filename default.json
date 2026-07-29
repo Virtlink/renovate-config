@@ -12,6 +12,7 @@
   "ignoreUnstable": true,
   // Git settings
   "branchPrefix": "chore/",
+  "prCreation": "not-pending",
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
