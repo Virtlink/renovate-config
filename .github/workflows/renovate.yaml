@@ -19,16 +19,17 @@ on:  # yamllint disable-line rule:truthy
     - cron: '17 3 * * 6'
   workflow_dispatch: # Allow manual triggering
   workflow_call:
-    log-level:
-      type: string
-      required: true
-      default: 'info'
-      description: 'The log level of Renovate.'
-    renovate-config-file:
-      type: string
-      required: true
-      default: 'renovate-config.json'
-      description: 'The path to the Renovate configuration file.'
+    inputs:
+      log-level:
+        type: string
+        required: true
+        default: 'info'
+        description: 'The log level of Renovate.'
+      renovate-config-file:
+        type: string
+        required: true
+        default: 'renovate-config.json'
+        description: 'The path to the Renovate configuration file.'
 
 jobs:
   update-actions:
