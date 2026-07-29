@@ -23,7 +23,6 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   update-dependencies:
-    name: 'Update dependencies'
     uses: virtlink/renovate-config/.github/workflows/renovate.yaml@main
     secrets:
       client-id: ${{ secrets.APP_ID }}
