@@ -3,7 +3,6 @@
   "description": "Shared Renovate policy.",
   // Self-hosted in a Docker container
   "dependencyDashboard": false,
-  "onboarding": false,
   "requireConfig": "ignored",
   // Consider a release stable after 3 days (same as Dependabot)
   "minimumReleaseAge": "3 days",
