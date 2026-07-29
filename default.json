@@ -12,7 +12,7 @@
   "internalChecksFilter": "strict",
   "ignoreUnstable": true,
   // Git settings
-  "branchPrefix": "chore/",
+  "branchPrefix": "renovate/",
   "prCreation": "immediate",
   "packageRules": [
     {
