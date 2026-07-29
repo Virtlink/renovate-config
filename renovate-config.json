@@ -3,7 +3,5 @@
   "platform": "github",
   "onboarding": false,
   "requireConfig": "optional",
-  "username": "virtlink-bot[bot]",
-  "gitAuthor": "virtlink-bot <305860423+virtlink-bot[bot]@users.noreply.github.com>",
   "extends": ["github>virtlink/renovate-config"]
 }
