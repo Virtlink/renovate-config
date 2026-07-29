@@ -11,23 +11,26 @@
 # And the following Actions repository secrets:
 # - APP_ID: The ID of the GitHub APP
 # - APP_PRIVATE_KEY: The contents of the GitHub App's private key .pem file
-name: 'Update GitHub Actions'
+name: 'Renovate'
 
 on:  # yamllint disable-line rule:truthy
+  # Scheduled workflow:
   schedule:
     # Run at 03:17 on Saturday
     - cron: '17 3 * * 6'
-  workflow_dispatch: # Allow manual triggering
+  # Manually triggered workflow:
+  workflow_dispatch:
+  # Resuable workflow:
   workflow_call:
     inputs:
       log-level:
         type: string
-        required: true
+        required: false
         default: 'info'
         description: 'The log level of Renovate.'
       renovate-config-file:
         type: string
-        required: true
+        required: false
         default: 'renovate-config.json'
         description: 'The path to the Renovate configuration file.'
 
