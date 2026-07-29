@@ -21,6 +21,10 @@ on:  # yamllint disable-line rule:truthy
     - cron: '17 3 * * 6'
   workflow_dispatch: # Allow manual triggering
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+  
 jobs:
   update-dependencies:
     name: 'Update dependencies'

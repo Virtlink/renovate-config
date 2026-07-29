@@ -33,6 +33,10 @@ on:  # yamllint disable-line rule:truthy
     # Run at 03:17 on Saturday
     - cron: '17 3 * * 6'
   workflow_dispatch:
+  
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
 jobs:
   update-dependencies:
