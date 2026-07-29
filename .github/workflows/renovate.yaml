@@ -35,8 +35,8 @@ on:  # yamllint disable-line rule:truthy
         
 
 jobs:
-  update-dependencies:
-    name: 'Update dependencies'
+  renovate:
+    name: 'Renovate'
     runs-on: ubuntu-latest
     steps:
       - name: 'Generate GitHub App token'
