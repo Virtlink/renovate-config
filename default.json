@@ -5,6 +5,7 @@
   "dependencyDashboard": false,
   "requireConfig": "ignored",
   "onboarding": false,
+  "allowedUnsafeExecutions": ["gradleWrapper"],
   // Consider a release stable after 3 days (same as Dependabot)
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-required",
@@ -37,7 +38,6 @@
       "groupName": "Gradle dependencies",
       "groupSlug": "gradle-dependencies",
       "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i",
-      "allowedUnsafeExecutions": ["gradleWrapper"],
     }
   ]
 }
