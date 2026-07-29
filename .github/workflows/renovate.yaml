@@ -57,3 +57,4 @@ jobs:
         env:
           LOG_LEVEL: ${{ inputs.log-level }}
           RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_REQUIRE_CONFIG: ignored
