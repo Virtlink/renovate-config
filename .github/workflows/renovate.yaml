@@ -3,9 +3,10 @@
 #   to create and approve pull requests.
 #   See: https://stackoverflow.com/a/73155199/146622
 # NOTE: This workflow needs a GitHub App with the following permissions:
+# - Commit statuses: Read and write
 # - Contents: Read and write
-# - Pull requests: Read and write
 # - Metadata: Read-only (required)
+# - Pull requests: Read and write
 # - Workflows: Read and write
 # And the following Actions repository secrets:
 # - APP_ID: The ID of the GitHub APP
@@ -17,6 +18,17 @@ on:  # yamllint disable-line rule:truthy
     # Run at 03:17 on Saturday
     - cron: '17 3 * * 6'
   workflow_dispatch: # Allow manual triggering
+  workflow_call:
+    log-level:
+      type: string
+      required: true
+      default: 'info'
+      description: 'The log level of Renovate.'
+    renovate-config-file:
+      type: string
+      required: true
+      default: 'renovate-config.json'
+      description: 'The path to the Renovate configuration file.'
 
 jobs:
   update-actions:
@@ -36,8 +48,8 @@ jobs:
       - name: 'Run Renovate'
         uses: renovatebot/github-action@1a96852b0384df1837619d04c60b2d10d1f9ff08  # v46.1.21
         with:
-          configurationFile: renovate-config.json
+          configurationFile: ${{ inputs.renovate-config-file }}
           token: ${{ steps.app-token.outputs.token }}
         env:
-          LOG_LEVEL: debug
+          LOG_LEVEL: ${{ inputs.log-level }}
           RENOVATE_REPOSITORIES: ${{ github.repository }}
