@@ -1,0 +1,8 @@
+[project]
+name = "docs"
+version = "1.0.0"
+description = "Shared configuration for self-hosted Renovate on projects."
+requires-python = ">=3.12"
+dependencies = [
+    "zensical>=0.0.23",
+]

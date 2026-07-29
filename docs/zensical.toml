@@ -1,0 +1,45 @@
+[project]
+site_name = "Renovate config"
+site_description = "Shared configuration for self-hosted Renovate on projects."
+site_author = "virtlink"
+
+site_dir = "public/"
+site_url = "https://pelsmaeker.net/renovate-config/"
+docs_dir = "content/"
+repo_url = "https://github.com/virtlink/renovate-config"
+edit_uri = "https://github.com/virtlink/renovate-config/edit/main/docs"
+
+extra_css = ["assets/extra.css"]
+
+
+[project.theme]
+language = "en"
+variant = "modern"
+features = [
+    "navigation.tabs",
+    "navigation.top",
+    "navigation.indexes",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.action.edit",
+    "content.action.view",
+]
+font.code = "JetBrains Mono"
+
+[project.theme.icon]
+logo = "fontawesome/solid/cat"
+repo = "fontawesome/brands/github"
+
+[[project.theme.palette]] 
+scheme = "default"
+primary = "indigo"
+accent = "deep orange"
+toggle.icon = "material/weather-night"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "indigo"
+accent = "deep orange"
+toggle.icon = "material/weather-sunny"
+toggle.name = "Switch to light mode"

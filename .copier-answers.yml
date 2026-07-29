@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier
+_commit: v1.3
+_src_path: gh:virtlink/zensical-docs-template
+author: virtlink
+description: Shared configuration for self-hosted Renovate on projects.
+name: Renovate config
+site_url: https://pelsmaeker.net/renovate-config/
+vcs_organization: virtlink
+vcs_platform: GitHub
+vcs_project: renovate-config

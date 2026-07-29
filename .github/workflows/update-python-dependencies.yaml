@@ -1,0 +1,57 @@
+---
+# NOTE: This actions requires that GitHub Actions is allowed
+# to create and approve pull requests.
+# See: https://stackoverflow.com/a/73155199/146622
+name: "Update Python Dependencies"
+
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    # Run at 6:00 on Saturday
+    - cron: "0 6 * * 6"
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-dependencies:
+    name: "Update Python dependencies"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "Install UV"
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+
+      - name: "Update Python lockfile"
+        run: |
+          cd docs/
+          uv lock --upgrade
+
+      - name: "Create PR"
+        id: cpr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 #v8.1.1
+        with:
+          commit-message: "Update Python dependencies"
+          title: "Update Python dependencies"
+          body: |
+            Automated update of Python dependencies in docs/ using UV.
+
+            This PR was created by the update workflow.
+          branch: chore/update-python-dependencies
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+          token: ${{ secrets.PAT_CREATE_PR }}
+
+      - name: "Auto-merge PR once checks pass"
+        if: |
+          steps.cpr.outputs.pull-request-operation == 'created' ||
+          steps.cpr.outputs.pull-request-operation == 'updated'
+        # NOTE: gh pr merge --auto (automerge) cannot delete the branch
+        #   (--delete-branch, see cli/cli/issues/9073)
+        run: |
+          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.PAT_CREATE_PR }}
