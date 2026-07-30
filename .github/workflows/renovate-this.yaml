@@ -31,6 +31,7 @@ jobs:
     uses: virtlink/renovate-config/.github/workflows/renovate.yaml@main
     with:
       log-level: info
+      renovate-config-file: renovate-github-config.json
     secrets:
       client-id: ${{ secrets.APP_CLIENT_ID }}
       client-private-key: ${{ secrets.APP_PRIVATE_KEY }}
