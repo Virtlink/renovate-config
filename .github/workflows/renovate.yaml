@@ -1,16 +1,4 @@
 ---
-# NOTE: This workflow requires that GitHub Actions is allowed
-#   to create and approve pull requests.
-#   See: https://stackoverflow.com/a/73155199/146622
-# NOTE: This workflow needs a GitHub App with the following permissions:
-# - Commit statuses: Read and write
-# - Contents: Read and write
-# - Metadata: Read-only (required)
-# - Pull requests: Read and write
-# - Workflows: Read and write
-# And the following Actions repository secrets:
-# - APP_ID: The ID of the GitHub APP
-# - APP_PRIVATE_KEY: The contents of the GitHub App's private key .pem file
 name: 'Renovate workflow'
 
 on:  # yamllint disable-line rule:truthy
