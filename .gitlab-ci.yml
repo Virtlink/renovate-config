@@ -1,0 +1,7 @@
+---
+include:
+  - local: /.gitlab/ci/renovate.yml
+
+renovate:
+  variables:
+    RENOVATE_CONFIG_FILE: renovate-gitlab-config.json

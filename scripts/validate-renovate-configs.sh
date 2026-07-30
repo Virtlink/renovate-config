@@ -6,10 +6,12 @@ out="${2:-}"
 
 cd "$src"
 
-repo_config=renovate-config.json
+renovate_config=renovate-github-config.json
+gitlab_config=renovate-gitlab-config.json
 default_config=default.json
 
-renovate-config-validator --strict "$repo_config"
+renovate-config-validator --strict "$renovate_config"
+renovate-config-validator --strict "$gitlab_config"
 renovate-config-validator --strict "$default_config"
 
 if [[ -n "$out" ]]; then

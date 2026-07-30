@@ -1,0 +1,18 @@
+---
+renovate:
+  image: renovate/renovate:46.1.21
+  variables:
+    LOG_LEVEL: info
+    RENOVATE_CONFIG_FILE: renovate-config.json
+    RENOVATE_ENDPOINT: $CI_API_V4_URL
+    RENOVATE_REPOSITORIES: $CI_PROJECT_PATH
+    RENOVATE_REQUIRE_CONFIG: ignored
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE == "true"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: manual
+      allow_failure: true
+  script:
+    - renovate --config-file "$RENOVATE_CONFIG_FILE"
