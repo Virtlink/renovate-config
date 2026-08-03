@@ -75,7 +75,7 @@ The workflow runs every Saturday at `03:17` UTC and can also be started manually
 
 Configure these repository secrets for the workflow:
 
-- `APP_ID`: GitHub App ID.
+- `APP_CLIENT_ID`: GitHub App client ID.
 - `APP_PRIVATE_KEY`: GitHub App private key PEM contents.
 
 The GitHub App needs repository permissions for contents read/write, pull requests read/write, workflows read/write, and metadata read-only.

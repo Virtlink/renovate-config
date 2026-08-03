@@ -45,7 +45,7 @@ jobs:
     with:
       log-level: info
     secrets:
-      client-id: ${{ secrets.APP_ID }}
+      client-id: ${{ secrets.APP_CLIENT_ID }}
       client-private-key: ${{ secrets.APP_PRIVATE_KEY }}
 ```
 
@@ -59,7 +59,7 @@ with:
 
 Configure these repository secrets in the consuming repository:
 
-- `APP_ID`: GitHub App ID.
+- `APP_CLIENT_ID`: GitHub App client ID.
 - `APP_PRIVATE_KEY`: GitHub App private key PEM contents.
 
 The GitHub App needs these repository permissions:
