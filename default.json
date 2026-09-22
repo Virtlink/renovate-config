@@ -1,11 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Shared Renovate policy.",
-  // Self-hosted in a Docker container
+  // Repository-safe policy only; global-only runtime options live in workflow/CI env.
   "dependencyDashboard": false,
-  "requireConfig": "ignored",
-  "onboarding": false,
-  "allowedUnsafeExecutions": ["gradleWrapper"],
   // Consider a release stable after 3 days (same as Dependabot)
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-required",

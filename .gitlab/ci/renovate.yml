@@ -7,6 +7,8 @@ renovate:
     RENOVATE_ENDPOINT: $CI_API_V4_URL
     RENOVATE_REPOSITORIES: $CI_PROJECT_PATH
     RENOVATE_REQUIRE_CONFIG: ignored
+    RENOVATE_ONBOARDING: "false"
+    RENOVATE_ALLOWED_UNSAFE_EXECUTIONS: gradleWrapper
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" && $RENOVATE == "true"'
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
