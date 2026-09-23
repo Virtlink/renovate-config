@@ -1,7 +1,7 @@
 {
   description = "Reusable Renovate presets";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
 
   outputs =
     { nixpkgs, ... }:
