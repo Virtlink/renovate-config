@@ -11,24 +11,21 @@
   // Git settings
   "branchPrefix": "renovate/",
   "prCreation": "immediate",
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions",
       "groupSlug": "github-actions",
       "separateMajorMinor": false,
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
     },
     {
       "matchManagers": ["gitlabci"],
       "groupName": "GitLab CI",
       "groupSlug": "gitlab-ci",
       "separateMajorMinor": false,
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
     },
     {
       "matchManagers": ["gradle", "gradle-wrapper"],
@@ -36,5 +33,5 @@
       "groupSlug": "gradle-dependencies",
       "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i",
     }
-  ]
+  ],
 }
