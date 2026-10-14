@@ -69,17 +69,10 @@ Each focused preset extends `github>virtlink/renovate-config`, so users do not n
 
 
 ## Repository automation
-This repository runs self-hosted Renovate from `.github/workflows/renovate.yaml` using `renovate-config.json` as the global configuration file.
+The [documentation](https://pelsmaeker.net/renovate-config/) explains how to configure a repository or project to use this shared configuration:
 
-The workflow runs every Saturday at `03:17` UTC and can also be started manually with `workflow_dispatch`.
-
-Configure these repository secrets for the workflow:
-
-- `APP_CLIENT_ID`: GitHub App client ID.
-- `APP_PRIVATE_KEY`: GitHub App private key PEM contents.
-
-The GitHub App needs repository permissions for contents read/write, pull requests read/write, workflows read/write, and metadata read-only.
-
+- GitHub: create and install the GitHub App, configure repository secrets, protect the default branch, enable auto-merge, and add the reusable workflow.
+- GitLab: create an API token, configure CI/CD variables, include the reusable CI job, and schedule Renovate.
 
 ## Development
 Enter the Nix development shell, then run the same Renovate validator used by CI:

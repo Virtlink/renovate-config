@@ -11,6 +11,13 @@ edit_uri = "https://github.com/virtlink/renovate-config/edit/main/docs"
 
 extra_css = ["assets/extra.css"]
 
+[project.plugins.macros]
+enabled = true
+module_name = "main"
+render_by_default = false
+on_error_fail = true
+on_undefined = "strict"
+
 
 [project.theme]
 language = "en"
