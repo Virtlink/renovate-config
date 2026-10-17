@@ -1,37 +1,60 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Shared Renovate policy.",
-  // Repository-safe policy only; global-only runtime options live in workflow/CI env.
-  "dependencyDashboard": false,
-  // Consider a release stable after 3 days (same as Dependabot)
+  "extends": ["config:recommended"],
+
+  // Dependency Dashboard
+  "dependencyDashboard": true,
+
+  // Release stability
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-required",
   "internalChecksFilter": "strict",
   "ignoreUnstable": true,
+
   // Git settings
   "branchPrefix": "renovate/",
-  "prCreation": "immediate",
-  "automerge": true,
+
+  // Automerge defaults
+  "automerge": false,
   "automergeType": "pr",
   "automergeStrategy": "squash",
+  "platformAutomerge": true,
+  "ignoreTests": false,
+
   "packageRules": [
     {
+      "description": "Automerge stable non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0\\./",
+      "automerge": true,
+    },
+    {
+      "description": "Major updates require manual review",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "addLabels": ["major-update"],
+    },
+    {
+      "description": "Group GitHub Actions updates",
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions",
       "groupSlug": "github-actions",
-      "separateMajorMinor": false,
+      "separateMajorMinor": true,
     },
     {
+      "description": "Group GitLab CI updates",
       "matchManagers": ["gitlabci"],
       "groupName": "GitLab CI",
       "groupSlug": "gitlab-ci",
-      "separateMajorMinor": false,
+      "separateMajorMinor": true,
     },
     {
+      "description": "Group Gradle dependencies",
       "matchManagers": ["gradle", "gradle-wrapper"],
       "groupName": "Gradle dependencies",
       "groupSlug": "gradle-dependencies",
-      "allowedVersions": "/^\\d+(?:\\.\\d+)+(?:[.-](?:final|release|ga))?$/i",
+      "separateMajorMinor": true,
     }
   ],
 }
