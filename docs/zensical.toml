@@ -1,3 +1,23 @@
+[[project.nav]]
+Home = "index.md"
+
+[[project.nav]]
+GitHub = [
+  "create-github-app.md",
+  "create-renovate-runner-repository.md",
+  "enable-renovate-on-github.md",
+  "github-automerge-prs-after-ci.md",
+]
+
+[[project.nav]]
+GitLab = [
+  "create-gitlab-service-account.md",
+  "add-gitlab-support-to-runner-repository.md",
+  "enable-renovate-on-gitlab.md",
+  "gitlab-automerge-prs-after-ci.md",
+]
+
+
 [project]
 site_name = "Renovate config"
 site_description = "Shared configuration for self-hosted Renovate on projects."
@@ -11,19 +31,6 @@ edit_uri = "https://github.com/virtlink/renovate-config/edit/main/docs"
 
 extra_css = ["assets/extra.css"]
 
-[[project.nav]]
-Home = "index.md"
-GitHub = [
-  "create-github-app.md",
-  "create-renovate-runner-repository.md",
-  "enable-renovate-on-github.md",
-  "automerge-prs-after-ci.md",
-]
-GitLab = [
-  "create-gitlab-service-account.md",
-  "add-gitlab-support-to-runner-repository.md",
-  "enable-renovate-on-gitlab.md",
-]
 
 [project.plugins.macros]
 enabled = true

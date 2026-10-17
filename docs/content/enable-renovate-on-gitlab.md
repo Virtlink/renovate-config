@@ -5,7 +5,8 @@ title: "Enable Renovate on a GitLab repository"
 
 ## Configure the repository
 1.  Go to the project's settings and modify the topics to add: `renovate-managed`
-2.  Add a `renovate.json` to enable Renovate:
+2.  [Enable auto-merge PRs](./gitlab-automerge-prs-after-ci.md).
+3.  Add a `renovate.json` to enable Renovate:
 
     ```json title="renovate.json"
     {

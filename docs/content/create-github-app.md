@@ -44,8 +44,5 @@ render_macros: true
     Click _Install_.
 
 
-## Apply the GitHub App to a repository
-See [Enable Renovate PRs](./enable-renovate-prs.md) for instructions on how to apply the GitHub App to a repository.
-
 !!! info "Next Step"
     [Create and configure the Renovate runner repository](./create-renovate-runner-repository.md).

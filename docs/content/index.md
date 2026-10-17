@@ -9,10 +9,12 @@ Shared configuration and automation for running self-hosted Renovate on Virtlink
 
 | Platform | Guide |
 | --- | --- |
-| GitHub | [Enable Renovate pull requests](./enable-renovate-prs.md) |
-| GitLab | [Enable Renovate merge requests](./enable-renovate-gitlab.md) |
+| GitHub | [Enable Renovate pull requests](./enable-renovate-on-github.md) |
+| GitLab | [Enable Renovate merge requests](./enable-renovate-on-gitlab.md) |
 
-GitHub users first create and install a [GitHub App](./create-github-app.md), then configure [branch protection and auto-merge](./automerge-prs-after-ci.md).
+GitHub users first create and install a [GitHub App](./create-github-app.md), then configure [branch protection and auto-merge](./github-automerge-prs-after-ci.md).
+
+GitLab users first create a [Service account](./create-gitlab-service-account.md), then configure [auto-merge](./gitlab-automerge-prs-after-ci.md)
 
 ## Renovate shared configuration
 
