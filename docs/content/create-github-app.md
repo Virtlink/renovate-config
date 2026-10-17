@@ -36,5 +36,16 @@ render_macros: true
 !!! info "Next Step"
     [Create and configure the Renovate runner repository](./create-renovate-runner-repository.md).
 
+
+## Install the App
+1.  Go to GitHub, Settings, _Developer settings_, [_GitHub Apps_](https://github.com/settings/apps).
+2.  Go to the new Apps' page, and go to _Install App_.
+3.  Click _Install_. Set:
+
+    - For these repositories: All repositories
+
+    Click _Install_.
+    
+
 ## Apply the GitHub App to a repository
 See [Enable Renovate PRs](./enable-renovate-prs.md) for instructions on how to apply the GitHub App to a repository.
