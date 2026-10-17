@@ -4,4 +4,4 @@ node = "24.22.0"
 
 [tasks."check:renovate"]
 description = "Validate Renovate configuration"
-run = "bash scripts/validate-renovate-configs.sh"
+run = "renovate-config-validator --strict default.json"
