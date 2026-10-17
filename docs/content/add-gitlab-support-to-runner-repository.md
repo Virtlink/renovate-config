@@ -58,6 +58,15 @@ After [setting up the Renovate runner repository](./create-renovate-runner-repos
             uses: actions/checkout@v7
             with:
               persist-credentials: false
+              
+          - name: 'Generate GitHub App token'
+            id: app-token
+            # yamllint disable rule:line-length
+            uses: actions/create-github-app-token@v3
+            with:
+              client-id: ${{ secrets.RENOVATE_GITHUB_APP_CLIENT_ID }}
+              private-key: ${{ secrets.RENOVATE_GITHUB_APP_PRIVATE_KEY }}
+              owner: ${{ github.repository_owner }}
 
           - name: 'Show execution mode'
             run: |
@@ -75,6 +84,7 @@ After [setting up the Renovate runner repository](./create-renovate-runner-repos
             env:
               LOG_LEVEL: ${{ inputs.log_level || 'info' }}
               RENOVATE_DRY_RUN: ${{ inputs.dry_run && 'full' || 'null' }}
+              RENOVATE_GITHUB_COM_TOKEN: ${{ steps.app-token.outputs.token }}
 
     ```
 
