@@ -1,5 +1,6 @@
 ---
 title: "Configure Renovate runner repository"
+render_macros: false
 ---
 # How to create and configure the Renovate runner repository
 After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup a repository with the configuration and Renovate runner:
@@ -7,7 +8,7 @@ After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup
 1.  Create a new GitHub repository named `renovate-runner`.
 2.  In the repository's settings, under _Secrets and variables_, _Actions_, add the following secrets to _Repository secrets_:
 
-    - `RENOVATE_APP_ID`: the GitHub App ID
+    - `RENOVATE_APP_CLIENT_ID`: the GitHub App Client ID
     - `RENOVATE_APP_PRIVATE_KEY`: the entire contents of the `.pem` file (the GitHub App's private key)
 
     !!! note ""
@@ -97,7 +98,7 @@ After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup
             # yamllint disable rule:line-length
             uses: actions/create-github-app-token@v3
             with:
-              app-id: ${{ secrets.RENOVATE_APP_ID }}
+              client-id: ${{ secrets.RENOVATE_APP_CLIENT_ID }}
               private-key: ${{ secrets.RENOVATE_APP_PRIVATE_KEY }}
               owner: ${{ github.repository_owner }}
 

@@ -31,7 +31,7 @@ render_macros: true
 3.  Click _Create GitHub App_.
 4.  Under _Private Keys_, click _Generate a private key_ and download the `.pem` file.
     Keep it safe, as you will not be able to download it again.
-5.  Determine the _App ID_ (found at the top under _About_).
+5.  Determine the _Client ID_ (found at the top under _About_).
 
 !!! info "Next Step"
     [Create and configure the Renovate runner repository](./create-renovate-runner-repository.md).
@@ -45,7 +45,7 @@ render_macros: true
     - For these repositories: All repositories
 
     Click _Install_.
-    
+
 
 ## Apply the GitHub App to a repository
 See [Enable Renovate PRs](./enable-renovate-prs.md) for instructions on how to apply the GitHub App to a repository.
