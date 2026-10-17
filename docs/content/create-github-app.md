@@ -33,9 +33,6 @@ render_macros: true
     Keep it safe, as you will not be able to download it again.
 5.  Determine the _Client ID_ (found at the top under _About_).
 
-!!! info "Next Step"
-    [Create and configure the Renovate runner repository](./create-renovate-runner-repository.md).
-
 
 ## Install the App
 1.  Go to GitHub, Settings, _Developer settings_, [_GitHub Apps_](https://github.com/settings/apps).
@@ -49,3 +46,6 @@ render_macros: true
 
 ## Apply the GitHub App to a repository
 See [Enable Renovate PRs](./enable-renovate-prs.md) for instructions on how to apply the GitHub App to a repository.
+
+!!! info "Next Step"
+    [Create and configure the Renovate runner repository](./create-renovate-runner-repository.md).

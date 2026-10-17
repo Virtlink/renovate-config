@@ -8,8 +8,8 @@ After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup
 1.  Create a new GitHub repository named `renovate-runner`.
 2.  In the repository's settings, under _Secrets and variables_, _Actions_, add the following secrets to _Repository secrets_:
 
-    - `RENOVATE_APP_CLIENT_ID`: the GitHub App Client ID
-    - `RENOVATE_APP_PRIVATE_KEY`: the entire contents of the `.pem` file (the GitHub App's private key)
+    - `RENOVATE_GITHUB_APP_CLIENT_ID`: the GitHub App Client ID
+    - `RENOVATE_GITHUB_APP_PRIVATE_KEY`: the entire contents of the `.pem` file (the GitHub App's private key)
 
     !!! note ""
         The private key is a multi-line string. Make sure to copy the entire contents of the `.pem` file. For example:
@@ -22,25 +22,28 @@ After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup
         -----END RSA PRIVATE KEY-----
         ```
 
-3.  Create `config.js` in the repository:
+3.  Create `config.github.js` in the repository:
 
-    ```javascript title="config.js"
+    ```javascript title="config.github.js"
     module.exports = {
       platform: "github",
+      
 
-      // Discover repositories the App can access.
+      // Only repositories that explicitly opt in
       autodiscover: true,
-      autodiscoverFilter: ["my-org/*"],
+      autodiscoverTopics: ["renovate-managed"],
 
-      // Require repository-level configuration.
+      // Onboard repositories with the shared preset
       onboarding: true,
-      requireConfig: "required",
+      onboardingConfig: {
+        extends: ["github>my-org/renovate-config"]
+      },
 
-      // Limit PR volume.
+      // Limit PR volume
       prConcurrentLimit: 5,
       prHourlyLimit: 2,
 
-      // Security defaults.
+      // Security defaults
       allowScripts: false,
       allowPlugins: false,
       allowedCommands: [],
@@ -82,8 +85,8 @@ After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup
       cancel-in-progress: false
 
     jobs:
-      renovate:
-        name: 'Renovate Job'
+      renovate-github:
+        name: 'Renovate GitHub'
         runs-on: ubuntu-latest
         timeout-minutes: 55
         steps:
@@ -98,35 +101,35 @@ After [creating a GitHub app](./create-github-app.md) for Renovate, we can setup
             # yamllint disable rule:line-length
             uses: actions/create-github-app-token@v3
             with:
-              client-id: ${{ secrets.RENOVATE_APP_CLIENT_ID }}
-              private-key: ${{ secrets.RENOVATE_APP_PRIVATE_KEY }}
+              client-id: ${{ secrets.RENOVATE_GITHUB_APP_CLIENT_ID }}
+              private-key: ${{ secrets.RENOVATE_GITHUB_APP_PRIVATE_KEY }}
               owner: ${{ github.repository_owner }}
 
           - name: 'Show execution mode'
             run: |
               echo "Log level: ${{ inputs.log_level || 'info' }}"
-              echo "Dry run: ${{ inputs.dry_run && 'full' || 'false' }}"
+              echo "Dry run: ${{ inputs.dry_run && 'full' || 'null' }}"
 
           - name: 'Run Renovate'
             # yamllint disable rule:line-length
             uses: renovatebot/github-action@v46.3.7
             with:
-              configurationFile: config.js
+              configurationFile: config.github.js
               token: ${{ steps.app-token.outputs.token }}
               mount-docker-socket: false
               renovate-version: '44'
             env:
               LOG_LEVEL: ${{ inputs.log_level || 'info' }}
-              RENOVATE_DRY_RUN: ${{ inputs.dry_run && 'full' || 'false' }}
+              RENOVATE_DRY_RUN: ${{ inputs.dry_run && 'full' || 'null' }}
 
     ```
 
     This workflow does the following:
 
-    - Execute every _n__ hours, or manually.
+    - Execute every _n_ hours, or manually.
     - Generate a short-lived GitHub App installation token.
     - Start the Renovate Docker container.
-    - Read `config.js`.
+    - Read `config.github.js`.
     - Check authorized repositories for outdated dependencies.
     - Create or update dependency pull requests.
     - Terminate when finished.

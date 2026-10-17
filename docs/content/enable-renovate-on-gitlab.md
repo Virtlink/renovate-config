@@ -4,7 +4,8 @@ title: "Enable Renovate on a GitLab repository"
 # How to configure and enable Renovate on a GitLab repository
 
 ## Configure the repository
-1.  Add a `renovate.json` to enable Renovate:
+1.  Go to the project's settings and modify the topics to add: `renovate-managed`
+2.  Add a `renovate.json` to enable Renovate:
 
     ```json title="renovate.json"
     {
