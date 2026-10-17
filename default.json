@@ -63,6 +63,12 @@
       "groupName": "Gradle dependencies",
       "groupSlug": "gradle-dependencies",
       "separateMajorMinor": true,
-    }
+    },
+    {
+      "description": "Copier template updates require manual review",
+      "matchManagers": ["copier"],
+      "automerge": false,
+      "addLabels": ["template-update"]
+    },
   ],
 }
