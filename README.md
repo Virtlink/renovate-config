@@ -75,17 +75,11 @@ The [documentation](https://pelsmaeker.net/renovate-config/) explains how to con
 - GitLab: create an API token, configure CI/CD variables, include the reusable CI job, and schedule Renovate.
 
 ## Development
-Enter the Nix development shell, then run the same Renovate validator used by CI:
+Use mise to install the local Renovate validator and run the same validation as CI:
 
 ```sh
-nix develop
-bash scripts/validate-renovate-configs.sh
+mise install
+mise run check:renovate
 ```
 
-Or run the full flake check:
-
-```sh
-nix flake check
-```
-
-The validation runs `renovate-config-validator --strict` against the self-hosted `renovate-config.json`, validates the base and focused presets with `--no-global`, then validates focused presets flattened with `default.json`.
+The validator runs `renovate-config-validator --strict` against `renovate-github-config.json`, `renovate-gitlab-config.json`, and `default.json`.

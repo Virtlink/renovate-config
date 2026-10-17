@@ -1,0 +1,7 @@
+[tools]
+node = "24.22.0"
+"npm:renovate" = { version = "44.166.0", allow_builds = ["re2"], trust_policy_excludes = ["@yarnpkg/libzip@3.2.2"] }
+
+[tasks."check:renovate"]
+description = "Validate Renovate configuration"
+run = "bash scripts/validate-renovate-configs.sh"
