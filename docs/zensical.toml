@@ -24,7 +24,7 @@ site_description = "Shared configuration for self-hosted Renovate on projects."
 site_author = "virtlink"
 
 site_dir = "public/"
-site_url = "https://pelsmaeker.net/renovate-config/"
+site_url = "https://virtlink.com/renovate-config/"
 docs_dir = "content/"
 repo_url = "https://github.com/virtlink/renovate-config"
 edit_uri = "https://github.com/virtlink/renovate-config/edit/main/docs"

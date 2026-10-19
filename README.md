@@ -21,7 +21,7 @@ Set your `renovate.json` to this:
 ```
 
 ## Repository automation
-The [documentation](https://pelsmaeker.net/renovate-config/) explains how to configure a repository or project to use this shared configuration.
+The [documentation](https://virtlink.com/renovate-config/) explains how to configure a repository or project to use this shared configuration.
 
 ## Development
 Use mise to install the local Renovate validator and run the same validation as CI:
