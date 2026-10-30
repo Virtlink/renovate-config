@@ -1,5 +1,5 @@
 [tools]
-node = "24.22.1"
+node = "24.22.2"
 "npm:renovate" = { version = "44.186.6", allow_builds = ["re2"], trust_policy_excludes = ["@yarnpkg/libzip@3.2.2"] }
 
 [tasks."check:renovate"]
